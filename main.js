@@ -26,13 +26,29 @@ class User {
   getNewMessage() {
     const messages = this.messages();
 
-    return messages.find((message) => {
+    const newMsg = messages.filter((message) => {
       return message.hasRead === undefined;
+    });
+
+    this.markAsRead(newMsg);
+    this.updateFile(JSON.stringify(messages));
+    return this.formatNewMsg(newMsg);
+  }
+
+  markAsRead(newMsges) {
+    newMsges.filter(msg => {
+      msg.hasRead = true;
     });
   }
 
+  formatNewMsg(newMsges) {
+    return newMsges.map(msg => {
+      return `${msg.from} : ${msg.message}`;
+    }).join('\n');
+  }
+
   sendMessage(newMsg) {
-    const formattedNewMsg = { message: newMsg };
+    const formattedNewMsg = { message: newMsg.trim(), from: this.username };
     const oldMessages = this.messages();
     oldMessages.push(formattedNewMsg);
     this.updateFile(JSON.stringify(oldMessages));
@@ -47,11 +63,21 @@ class User {
   }
 }
 
-const user = new User('bot', './chatData.json');
+const getUserName = () => {
+  try {
+    const userData = JSON.parse(fs.readFileSync('./localData.json', 'utf8'));
+    return userData ? userData.username : 'Bot';
+  } catch (error) {
+    return 'Bot';
+  }
+}
+
+const username = getUserName();
+const user = new User(username, './chatData.json');
 
 fs.watchFile('./chatData.json', () => {
   if (user.newMessageArrived()) {
-    console.log(user.getNewMessage().message);
+    console.log(user.getNewMessage());
   }
 });
 

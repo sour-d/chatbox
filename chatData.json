@@ -1,1 +1,11 @@
-[{"message":"hello"},{"message":"hi"},{"message":"how are you?\n"}]
+[
+  {
+    "message": "hello",
+    "from": "tanmoy",
+    "hasRead": true
+  },
+  {
+    "message": "how are you?",
+    "from": "sourav"
+  }
+]
