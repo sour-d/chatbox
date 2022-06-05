@@ -12,8 +12,9 @@ while [[ count -lt 10 ]]
 do 
   node main.js
   exitCode=$?
-  
-  if [[ exitCode -eq 2 ]] then
+
+  if [[ $exitCode -eq 2 ]]
+  then
     commitMsg="sent new message"
   else
     commitMsg="marked as read"
