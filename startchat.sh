@@ -9,7 +9,7 @@ function updateChatData() {
 git checkout messageData &> /dev/null
 $(updateChatData) &
 
-while [[ count -lt 10 ]]
+while true
 do 
   node main.js
   exitCode=$?
