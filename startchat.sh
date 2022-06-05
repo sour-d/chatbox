@@ -24,5 +24,5 @@ do
 
   git add ./chatData.json &> /dev/null
   git commit -m "${commitMsg}" &> /dev/null
-  git push origin messageData&> /dev/null
+  git push origin messageData &> /dev/null
 done
