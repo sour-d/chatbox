@@ -33,12 +33,15 @@ const main = () => {
 
 const sendNewMsg = (user, message) => {
   user.sendMessage(message);
+  console.log('added new message');
   process.exit(0);
 };
 
 const reciveNewMsg = (user) => {
   if (user.newMessageArrived()) {
     console.log(user.getNewMessage());
+    console.log('marked as read');
+    process.exit(0);
   }
 };
 
