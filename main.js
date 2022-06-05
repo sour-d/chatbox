@@ -27,7 +27,7 @@ const main = () => {
   // sending new msg if user give any input
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', (message) => {
-    console.log('\n');
+    console.log('');
     eventEmitter.emit('send-new-msg', user, message);
   });
 };
