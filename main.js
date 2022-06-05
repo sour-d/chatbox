@@ -39,7 +39,7 @@ const sendNewMsg = (user, message) => {
 
 const reciveNewMsg = (user) => {
   if (user.newMessageArrived()) {
-    console.log(user.getNewMessage());
+    console.log(user.getNewMessage() + '\n');
     console.log('marked as read');
     process.exit(0);
   }
