@@ -2,10 +2,11 @@ function updateChatData() {
   while true
   do
     sleep 0.5
-    git pull &> /dev/null
+    git pull origin messageData &> /dev/null
   done
 }
 
+git checkout messageData &> /dev/null
 $(updateChatData) &
 
 while [[ count -lt 10 ]]
@@ -23,5 +24,5 @@ do
 
   git add ./chatData.json &> /dev/null
   git commit -m "${commitMsg}" &> /dev/null
-  git push &> /dev/null
+  git push origin messageData &> /dev/null
 done
