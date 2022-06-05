@@ -1,1 +1,20 @@
-[{"message":"hi","from":"s","hasRead":true},{"message":"hello","from":"Tanmay","hasRead":true},{"message":"hi","from":"Sourav","hasRead":true},{"message":"hey","from":"Tanmay"}]
+[
+  {
+    "message": "hi",
+    "from": "s",
+    "hasRead": true
+  },
+  {
+    "message": "hello",
+    "from": "Tanmay",
+    "hasRead": true
+  },
+  {
+    "message": "hi",
+    "from": "Sourav"
+  },
+  {
+    "message": "how are you?",
+    "from": "Sourav"
+  }
+]
