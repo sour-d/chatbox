@@ -10,8 +10,16 @@ $(updateChatData) &
 
 while [[ count -lt 10 ]]
 do 
-  commitMsg=$(node main.js)
+  node main.js
+  exitCode=$?
   
+  if [[ exitCode -eq 2 ]] then
+    commitMsg="sent new message"
+  else
+    commitMsg="marked as read"
+  fi
+
+
   git add ./chatData.json &> /dev/null
   git commit -m "${commitMsg}" &> /dev/null
   git push &> /dev/null
