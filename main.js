@@ -33,13 +33,13 @@ const main = () => {
 };
 
 const sendNewMsg = (user, message) => {
-  user.sendMessage(message);
+  user.send(message);
   process.exit(2);
 };
 
 const reciveNewMsg = (user) => {
   if (user.newMessageArrived()) {
-    console.log(user.getNewMessage() + '\n');
+    console.log(user.recive() + '\n');
     process.exit(3);
   }
 };

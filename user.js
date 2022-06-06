@@ -6,7 +6,7 @@ class User {
     this.msgDataFile = msgDataFile;
   }
 
-  messages() {
+  #messages() {
     try {
       const messages = fs.readFileSync(this.msgDataFile, 'utf8');
       return JSON.parse(messages);
@@ -16,15 +16,15 @@ class User {
   }
 
   newMessageArrived() {
-    const messages = this.messages();
+    const messages = this.#messages();
 
     return messages.some((message) => {
       return message.hasRead === undefined;
     });
   }
 
-  getNewMessage() {
-    const messages = this.messages();
+  recive() {
+    const messages = this.#messages();
 
     const newMsg = messages.filter((message) => {
       return message.hasRead === undefined;
@@ -36,21 +36,22 @@ class User {
   }
 
   markAsRead(newMsges) {
-    newMsges.filter(msg => {
+    newMsges.forEach(msg => {
       msg.hasRead = true;
     });
   }
 
   formatNewMsg(newMsges) {
-    return newMsges.map(msg => {
-      return `${msg.from} : ${msg.message}`;
+    return newMsges.map(message => {
+      return `${message.from} : ${message.message}`;
     }).join('\n');
   }
 
-  sendMessage(newMsg) {
-    const formattedNewMsg = { message: newMsg.trim(), from: this.username };
-    const oldMessages = this.messages();
+  send(message) {
+    const formattedNewMsg = { message: message.trim(), from: this.username };
+    const oldMessages = this.#messages();
     oldMessages.push(formattedNewMsg);
+
     this.updateFile(JSON.stringify(oldMessages));
   }
 
